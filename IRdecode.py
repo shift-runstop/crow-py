@@ -2,6 +2,7 @@
 # -*- coding:utf-8 -*-
 import RPi.GPIO as GPIO
 import time
+import subprocess
 
 # Define IR pin
 PIN = 20
@@ -38,15 +39,17 @@ def exec_cmd(key_val):
     elif(key_val==0x0d):
         print("Button 200+")
     elif(key_val==0x0c):
-        print("Button 1")
+        try:
+            print("Initializing Az")
+            subprocess.run("python3 /home/user1/FTP/IN/AZ/Bot\ Az/discord.py", shell=True)
     elif(key_val==0x18):
-        print("Button 2")
+        subprocess.run("python3 /home/user1/FTP/IN/AZ/Bot\ Bard/main.py", shell=True)
     elif(key_val==0x5e):
-        print("Button 3")
+        subprocess.run("python3 /home/user1/FTP/IN/AZ/Bot\ Sourpatches/discord.py", shell=True)
     elif(key_val==0x08):
-        print("Button 4")
+        print("")
     elif(key_val==0x1c):
-        print("Button 5")
+        print("")
     elif(key_val==0x5a):
         print("Button 6")
     elif(key_val==0x42):
@@ -55,7 +58,11 @@ def exec_cmd(key_val):
         print("Button 8")
     elif(key_val==0x4a):
         print("Button 9")
-
+"""
+/home/user1/FTP/IN/AZ/Bot\ Bard/main.py
+/home/user1/FTP/IN/AZ/Bot\ Az/discord.py
+/home/user1/FTP/IN/AZ/Bot\ Sourpatches/discord.py
+"""
 
 while True:
     if GPIO.input(PIN) == 0:
@@ -84,6 +91,7 @@ while True:
                 time.sleep(0.00006)
 
             if count > 8:
+                # idx == 0 , cnt == 0 ,
                 data[idx] |= 1<<cnt
             if cnt == 7:
                 cnt = 0

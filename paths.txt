@@ -1,0 +1,3 @@
+/home/user1/FTP/IN/AZ/Bard/main.py
+/home/user1/FTP/IN/AZ/Bot/discord.py
+/home/user1/FTP/IN/AZ/Sourpatches/discord.py
